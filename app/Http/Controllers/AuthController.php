@@ -16,7 +16,7 @@ class AuthController extends Controller
             'email'=>'required|string|unique:users,email',
             'password'=>'required|string|confirmed',
         ]);
-        $admin = User::create([
+        $admin = Admin::create([
             'name'=>$fileds['name'],
             'email'=>$fileds['email'],
             'password'=>bcrypt($fileds['password']),
@@ -37,7 +37,7 @@ class AuthController extends Controller
             'email'=>'required|string',
             'password'=>'required|string'
         ]);
-        $user = User::where('email',$fileds['email'])->first();
+        $user = Admin::where('email',$fileds['email'])->first();
             if(!$user || !Hash::check($fileds['password'], $user->password)){
                 return response([
                     "message"=>"wrong password|| User name",
